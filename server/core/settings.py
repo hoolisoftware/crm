@@ -5,9 +5,9 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = 'secret-key'
 
-DEBUG = os.environ.get('DJANGO_DEBUG') == 'on'
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
