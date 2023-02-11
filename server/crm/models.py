@@ -52,7 +52,7 @@ class PositionMark(Mark):
         verbose_name_plural = 'метки'
 
     def __str__(self):
-        return self.employee
+        return self.employee.get_full_name()
 
 
 class PositionAdditionalMark(Mark):
@@ -63,4 +63,4 @@ class PositionAdditionalMark(Mark):
         verbose_name_plural = 'метки (сверхурочные)'
 
     def __str__(self):
-        return self.employee
+        return self.employee.get_full_name()
