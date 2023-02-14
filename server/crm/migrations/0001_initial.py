@@ -20,20 +20,33 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='User',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('password', models.CharField(max_length=128, verbose_name='password')),
-                ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
-                ('is_superuser', models.BooleanField(default=False, help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status')),
-                ('username', models.CharField(error_messages={'unique': 'A user with that username already exists.'}, help_text='Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.', max_length=150, unique=True, validators=[django.contrib.auth.validators.UnicodeUsernameValidator()], verbose_name='username')),
-                ('first_name', models.CharField(blank=True, max_length=150, verbose_name='first name')),
-                ('last_name', models.CharField(blank=True, max_length=150, verbose_name='last name')),
-                ('email', models.EmailField(blank=True, max_length=254, verbose_name='email address')),
-                ('is_staff', models.BooleanField(default=False, help_text='Designates whether the user can log into this admin site.', verbose_name='staff status')),
-                ('is_active', models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')),
-                ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('password', models.CharField(
+                    max_length=128, verbose_name='password')),
+                ('last_login', models.DateTimeField(
+                    blank=True, null=True, verbose_name='last login')),
+                ('is_superuser', models.BooleanField(default=False,
+                 help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status')),
+                ('username', models.CharField(error_messages={'unique': 'A user with that username already exists.'}, help_text='Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.',
+                 max_length=150, unique=True, validators=[django.contrib.auth.validators.UnicodeUsernameValidator()], verbose_name='username')),
+                ('first_name', models.CharField(blank=True,
+                 max_length=150, verbose_name='first name')),
+                ('last_name', models.CharField(blank=True,
+                 max_length=150, verbose_name='last name')),
+                ('email', models.EmailField(blank=True,
+                 max_length=254, verbose_name='email address')),
+                ('is_staff', models.BooleanField(default=False,
+                 help_text='Designates whether the user can log into this admin site.', verbose_name='staff status')),
+                ('is_active', models.BooleanField(
+                    default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')),
+                ('date_joined', models.DateTimeField(
+                    default=django.utils.timezone.now, verbose_name='date joined')),
                 ('phone', models.IntegerField(null=True)),
-                ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.group', verbose_name='groups')),
-                ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.permission', verbose_name='user permissions')),
+                ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
+                 related_name='user_set', related_query_name='user', to='auth.group', verbose_name='groups')),
+                ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.',
+                 related_name='user_set', related_query_name='user', to='auth.permission', verbose_name='user permissions')),
             ],
             options={
                 'verbose_name': 'user',
@@ -47,13 +60,18 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Position',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255, verbose_name='название')),
                 ('daily_salary', models.IntegerField(verbose_name='цена смены')),
-                ('daily_salary_additional', models.IntegerField(verbose_name='цена часа переработки')),
-                ('daily_hours', models.IntegerField(verbose_name='кол-во часов в смене')),
-                ('daily_hours_spread', models.IntegerField(verbose_name='разрыв между сменами (часы)')),
-                ('employee', models.ManyToManyField(to=settings.AUTH_USER_MODEL, verbose_name='сотрудники')),
+                ('daily_salary_additional', models.IntegerField(
+                    verbose_name='цена часа переработки')),
+                ('daily_hours', models.IntegerField(
+                    verbose_name='кол-во часов в смене')),
+                ('daily_hours_spread', models.IntegerField(
+                    verbose_name='разрыв между сменами (часы)')),
+                ('employee', models.ManyToManyField(
+                    to=settings.AUTH_USER_MODEL, verbose_name='сотрудники')),
             ],
             options={
                 'verbose_name': 'должность',
@@ -63,11 +81,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Project',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255, verbose_name='название')),
                 ('description', models.TextField(verbose_name='описание')),
                 ('created', models.DateField(auto_now_add=True)),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='владелец')),
+                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 to=settings.AUTH_USER_MODEL, verbose_name='владелец')),
             ],
             options={
                 'verbose_name': 'проект',
@@ -77,11 +97,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PositionMark',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('date', models.DateField(verbose_name='дата отметки')),
                 ('paid', models.BooleanField(verbose_name='оплачено')),
-                ('employee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='сотрудник')),
-                ('position', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='crm.position', verbose_name='позиция')),
+                ('employee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 to=settings.AUTH_USER_MODEL, verbose_name='сотрудник')),
+                ('position', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='crm.position', verbose_name='позиция')),
             ],
             options={
                 'verbose_name': 'метка',
@@ -91,12 +114,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PositionAdditionalMark',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('date', models.DateField(verbose_name='дата отметки')),
                 ('paid', models.BooleanField(verbose_name='оплачено')),
                 ('hours', models.IntegerField(verbose_name='кол-во часов')),
-                ('employee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='сотрудник')),
-                ('position', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='crm.position', verbose_name='позиция')),
+                ('employee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 to=settings.AUTH_USER_MODEL, verbose_name='сотрудник')),
+                ('position', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='crm.position', verbose_name='позиция')),
             ],
             options={
                 'verbose_name': 'метка (сверхурочная)',
@@ -106,6 +132,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='position',
             name='project',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='crm.project', verbose_name='проект'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='crm.project', verbose_name='проект'),
         ),
     ]
