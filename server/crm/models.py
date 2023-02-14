@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+
 class User(AbstractUser):
     phone = models.IntegerField(null=True)
 
@@ -9,7 +10,8 @@ class Project(models.Model):
     name = models.CharField('название', max_length=255)
     description = models.TextField('описание')
     created = models.DateField(auto_now_add=True)
-    owner = models.ForeignKey(verbose_name='владелец', to=User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(verbose_name='владелец',
+                              to=User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'проект'
@@ -20,7 +22,8 @@ class Project(models.Model):
 
 
 class Position(models.Model):
-    project = models.ForeignKey(verbose_name='проект', to=Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(
+        verbose_name='проект', to=Project, on_delete=models.CASCADE)
     employee = models.ManyToManyField(verbose_name='сотрудники', to=User)
     name = models.CharField('название', max_length=255)
     daily_salary = models.IntegerField('цена смены')
@@ -38,8 +41,10 @@ class Position(models.Model):
 
 class Mark(models.Model):
     date = models.DateField('дата отметки')
-    position = models.ForeignKey(verbose_name='позиция', to=Position, on_delete=models.CASCADE)
-    employee = models.ForeignKey(verbose_name='сотрудник', to=User, on_delete=models.CASCADE)
+    position = models.ForeignKey(
+        verbose_name='позиция', to=Position, on_delete=models.CASCADE)
+    employee = models.ForeignKey(
+        verbose_name='сотрудник', to=User, on_delete=models.CASCADE)
     paid = models.BooleanField('оплачено')
 
     class Meta:

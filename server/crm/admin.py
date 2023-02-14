@@ -10,4 +10,3 @@ admin.site.register(models.Project)
 admin.site.register(models.Position)
 admin.site.register(models.PositionMark)
 admin.site.register(models.PositionAdditionalMark)
-
