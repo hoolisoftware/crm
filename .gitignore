@@ -160,3 +160,5 @@ cython_debug/
 
 *.bat
 *.code-workspace
+
+*.sqlite3
