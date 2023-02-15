@@ -23,9 +23,6 @@ function getChartColorsArray(e) {
       });
   }
 }
-setTimeout(function () {
-  $("#subscribeModal").modal("show");
-}, 2e3);
 var linechartBasicColors = getChartColorsArray("stacked-column-chart");
 linechartBasicColors &&
   ((options = {
