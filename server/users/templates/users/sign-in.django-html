@@ -1,0 +1,114 @@
+{% extends 'origin/base-raw.django-html' %}
+
+{% load static %}
+
+{% block title %}
+Войти
+{% endblock %}
+
+{% block page %}
+<div class="account-pages my-5 pt-sm-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="card overflow-hidden">
+                    <div class="bg-primary bg-soft">
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="text-primary p-4">
+                                    <h5 class="text-primary">Добро пожаловать снова !</h5>
+                                    <p>Войдите, что бы продолжить в FastCRM.</p>
+                                </div>
+                            </div>
+                            <div class="col-5 align-self-end">
+                                <img src="{% static '' %}images/profile-img.png" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="auth-logo">
+                            <div class="mb-4">
+                                <span>
+                                    <img src="{% static '' %}images/logo.svg" class="d-block mt-4" style="margin: 0 auto;" height="34">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <form class="form-horizontal">
+
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Почта</label>
+                                    <input type="email" class="form-control" id="username" placeholder="Введи почту">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Пароль</label>
+                                    <div class="input-group auth-pass-inputgroup">
+                                        <input type="password" class="form-control" placeholder="Введите пароль"
+                                            aria-label="Password" aria-describedby="password-addon">
+                                        <button class="btn btn-light " type="button" id="password-addon"><i
+                                                class="mdi mdi-eye-outline"></i></button>
+                                    </div>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remember-check">
+                                    <label class="form-check-label" for="remember-check">
+                                        Запомнить меня
+                                    </label>
+                                </div>
+
+                                <div class="mt-3 d-grid">
+                                    <a href="{% url 'crm:home' %}" class="btn btn-primary waves-effect waves-light" type="submit">Войти</a>
+                                </div>
+
+                                <div class="mt-4 text-center">
+                                    <h5 class="font-size-14 mb-3">Войдите с помощью :</h5>
+
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a href="javascript::void()"
+                                                class="social-list-item bg-primary text-white border-primary">
+                                                <i class="mdi mdi-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript::void()"
+                                                class="social-list-item bg-info text-white border-info">
+                                                <i class="mdi mdi-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript::void()"
+                                                class="social-list-item bg-danger text-white border-danger">
+                                                <i class="mdi mdi-google"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="mt-4 text-center">
+                                    <a href="{% url 'users:password-forgot' %}" class="text-muted"><i class="mdi mdi-lock me-1"></i>
+                                        Забыли пароль?</a>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="mt-5 text-center">
+
+                    <div>
+                        <p>Нет учётной записи ? <a href="{% url 'users:sign-up' %}" class="fw-medium text-primary"> Создайте сейчас </a> </p>
+                        <p>©
+                            2023. Crafted with 
+                            <i class="mdi mdi-heart text-danger"></i> by Hooli Software
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

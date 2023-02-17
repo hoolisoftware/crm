@@ -59,16 +59,22 @@
                 </li>
 
                 <li>
-                    <a href="#" class="waves-effect">
+                    <a href="{% url 'users:sign-in' %}" class="waves-effect">
                         <i class="fa-solid fa-right-to-bracket"></i>
                         <span key="t-chat">Войти</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="#" class="waves-effect">
+                    <a href="{% url 'users:sign-up' %}" class="waves-effect">
                         <i class="fa-solid fa-user-plus"></i>
                         <span key="t-file-manager">Регистрация</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'users:sign-up' %}" class="waves-effect">
+                        <i class="fa-solid fa-key"></i>
+                        <span key="t-file-manager">Забыл пароль</span>
                     </a>
                 </li>
             </ul>
