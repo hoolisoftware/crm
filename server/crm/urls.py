@@ -11,7 +11,7 @@ urlpatterns = [
     path('account/positions/',
          views.AccountPositionDetailView.as_view(),
          name=''),
-         
+
     path('account/positions/<int:pk>/',
          views.AccountPositionListView.as_view(),
          name=''),

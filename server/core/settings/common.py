@@ -93,3 +93,11 @@ MEDIA_ROOT = BASE_DIR / 'mediafiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
+
+LOGIN_REDIRECT_URL = 'crm:home'
+LOGOUT_REDIRECT_URL = 'users:sign-in'
+
+LOGIN_URL = 'users:sign-in'
+LOGOUT_URL = 'users:logout'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

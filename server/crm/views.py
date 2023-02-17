@@ -1,53 +1,54 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 
 
-class HomeView(generic.TemplateView):
+class HomeView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'crm/home.django-html'
 
 
-class AccountPositionDetailView(generic.TemplateView):
+class AccountPositionDetailView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'crm/account-position-detail.django-html'
 
 
-class AccountPositionListView(generic.TemplateView):
+class AccountPositionListView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'crm/account-position-list.django-html'
 
 
-class AccountPositionOkAddView(generic.TemplateView):
+class AccountPositionOkAddView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'crm/account-position-ok.django-html'
 
 
-class AccountPositionOkView(generic.TemplateView):
+class AccountPositionOkView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'crm/account-position-ok-add.django-html'
 
 
-class AccountProjectCreateView(generic.TemplateView):
+class AccountProjectCreateView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'crm/account-project-create-update.django-html'
 
 
-class AccountProjectUpdateView(generic.TemplateView):
+class AccountProjectUpdateView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'crm/account-project-create-update.django-html'
 
 
-class AccountProjectDetailView(generic.TemplateView):
+class AccountProjectDetailView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'crm/account-project-detail.django-html'
 
 
-class AccountProjectListView(generic.TemplateView):
+class AccountProjectListView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'crm/account-project-list.django-html'
 
 
-class AccountProjectPositionAddEmployeeView(generic.TemplateView):
+class AccountProjectPositionAddEmployeeView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'crm/account-project-position-add-employee.django-html'
 
 
-class AccountProjectPositionCreateView(generic.TemplateView):
+class AccountProjectPositionCreateView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'crm/account-project-position-create-update.django-html'
 
 
-class AccountProjectPositionUpdateView(generic.TemplateView):
+class AccountProjectPositionUpdateView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'crm/account-project-position-create-update.django-html'
 
 
-class AccountProjectPositionDetailView(generic.TemplateView):
+class AccountProjectPositionDetailView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'crm/account-project-position-detail.django-html'
