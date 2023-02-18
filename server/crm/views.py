@@ -38,17 +38,29 @@ class AccountProjectListView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'crm/account-project-list.django-html'
 
 
-class AccountProjectPositionAddEmployeeView(LoginRequiredMixin, generic.TemplateView):
+class AccountProjectPositionAddEmployeeView(
+    LoginRequiredMixin,
+    generic.TemplateView
+):
     template_name = 'crm/account-project-position-add-employee.django-html'
 
 
-class AccountProjectPositionCreateView(LoginRequiredMixin, generic.TemplateView):
+class AccountProjectPositionCreateView(
+    LoginRequiredMixin,
+    generic.TemplateView
+):
     template_name = 'crm/account-project-position-create-update.django-html'
 
 
-class AccountProjectPositionUpdateView(LoginRequiredMixin, generic.TemplateView):
+class AccountProjectPositionUpdateView(
+    LoginRequiredMixin,
+    generic.TemplateView
+):
     template_name = 'crm/account-project-position-create-update.django-html'
 
 
-class AccountProjectPositionDetailView(LoginRequiredMixin, generic.TemplateView):
+class AccountProjectPositionDetailView(
+    LoginRequiredMixin,
+    generic.TemplateView
+):
     template_name = 'crm/account-project-position-detail.django-html'
