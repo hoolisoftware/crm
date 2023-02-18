@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument(
-            '--username', help="Admin's username", required=True
+            '--email', help="Admin's email", required=True
         )
 
         parser.add_argument(
@@ -20,8 +20,8 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args: Tuple, **options: Dict) -> Optional[str]:
-        if not User.objects.filter(username=options['username']).exists():
+        if not User.objects.filter(email=options['email']).exists():
             User.objects.create_superuser(
-                username=options['username'],
+                email=options['email'],
                 password=options['password']
             )

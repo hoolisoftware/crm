@@ -34,32 +34,34 @@
                             </div>
                         </div>
                         <div class="p-2">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" action="{% url 'users:sign-in' %}" method="post">
+                                {% csrf_token %}
+                                {{ form.non_field_errors }}
 
                                 <div class="mb-3">
-                                    <label for="username" class="form-label">Почта</label>
-                                    <input type="email" class="form-control" id="username" placeholder="Введи почту">
+                                    <label class="form-label" for="{{ form.username.html_name }}">{{ form.username.label }}</label>
+                                    {{ form.username }}
+                                    {% for error in form.username.errors %}
+                                        <span class="text-danger">{{ error }}</span>
+                                    {% endfor %}
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Пароль</label>
-                                    <div class="input-group auth-pass-inputgroup">
-                                        <input type="password" class="form-control" placeholder="Введите пароль"
-                                            aria-label="Password" aria-describedby="password-addon">
-                                        <button class="btn btn-light " type="button" id="password-addon"><i
-                                                class="mdi mdi-eye-outline"></i></button>
-                                    </div>
+                                    <label class="form-label" for="{{ form.password.html_name }}">{{ form.password.label }}</label>
+                                    {{ form.password }}
+                                    {% for error in form.username.errors %}
+                                        <span class="text-danger">{{ error }}</span>
+                                    {% endfor %}
                                 </div>
-
+                                
                                 <div class="form-check">
+                                    <label class="form-check-label" for="{{ form.remember_me.html_name }}">{{ form.remember_me.label }}</label>
+                                    {{ form.remember_me }}
                                     <input class="form-check-input" type="checkbox" id="remember-check">
-                                    <label class="form-check-label" for="remember-check">
-                                        Запомнить меня
-                                    </label>
                                 </div>
 
                                 <div class="mt-3 d-grid">
-                                    <a href="{% url 'crm:home' %}" class="btn btn-primary waves-effect waves-light" type="submit">Войти</a>
+                                    <button class="btn btn-primary waves-effect waves-light" type="submit">Войти</button>
                                 </div>
 
                                 <div class="mt-4 text-center">
