@@ -22,7 +22,7 @@ class UserSignUpForm(UserCreationForm):
         self.fields['email'].widget = forms.TextInput(attrs={
             **self.common_attributes,
         })
-        
+
         self.fields['first_name'].widget = forms.TextInput(attrs={
             **self.common_attributes,
         })
