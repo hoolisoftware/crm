@@ -22,7 +22,7 @@ class UserSignUpForm(UserCreationForm):
         self.fields['email'].widget = forms.TextInput(attrs={
             **self.common_attributes,
         })
-        
+
         self.fields['first_name'].widget = forms.TextInput(attrs={
             **self.common_attributes,
         })
@@ -31,11 +31,12 @@ class UserSignUpForm(UserCreationForm):
             **self.common_attributes,
         })
 
-        self.fields['password1'].widget = widgets.PasswordWidget(attrs={
+        self.fields['password1'].widget = forms.PasswordInput(attrs={
             **self.common_attributes,
+            'addon': 'password-addon'
         })
 
-        self.fields['password2'].widget = widgets.PasswordWidget(attrs={
+        self.fields['password2'].widget = forms.PasswordInput(attrs={
             **self.common_attributes,
             'addon': 'confirm-password-addon'
         })
