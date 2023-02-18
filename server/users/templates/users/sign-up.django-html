@@ -41,6 +41,11 @@
                                         <label class="form-label" for="{{ field.html_name }}">{{ field.label }}</label>
                                         {{ field }}
                                     </div>
+                                    {% for error in field.errors %}
+                                        <span class="text-danger">
+                                            {{ error }}
+                                        </span>
+                                    {% endfor %}
                                 {% endfor %}
 
                                 <div class="mt-3 d-grid">

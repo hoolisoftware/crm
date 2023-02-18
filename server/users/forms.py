@@ -21,24 +21,28 @@ class UserSignUpForm(UserCreationForm):
     def add_widgets_to_fields(self) -> None:
         self.fields['email'].widget = forms.TextInput(attrs={
             **self.common_attributes,
-            'placeholder': _('Enter email')
+        })
+        
+        self.fields['first_name'].widget = forms.TextInput(attrs={
+            **self.common_attributes,
+        })
+
+        self.fields['last_name'].widget = forms.TextInput(attrs={
+            **self.common_attributes,
         })
 
         self.fields['password1'].widget = widgets.PasswordWidget(attrs={
             **self.common_attributes,
-            'placeholder': _('Enter password'),
-            'addon': 'password-addon'
         })
 
         self.fields['password2'].widget = widgets.PasswordWidget(attrs={
             **self.common_attributes,
-            'placeholder': _('Enter password'),
             'addon': 'confirm-password-addon'
         })
 
     class Meta:
         model = User
-        fields = ('email', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'email', 'password1', 'password2')
 
         labels = {
             'email': _('Email'),
