@@ -34,35 +34,18 @@
                             </div>
                         </div>
                         <div class="p-2">
-                            <form class="form-horizontal" >
-
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Почта</label>
-                                    <input type="email" class="form-control" id="username" placeholder="Введи почту">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Пароль</label>
-                                    <div class="input-group auth-pass-inputgroup">
-                                        <input type="password" class="form-control" placeholder="Введите пароль"
-                                            aria-label="Password" aria-describedby="password-addon">
-                                        <button class="btn btn-light " type="button" id="password-addon"><i
-                                                class="mdi mdi-eye-outline"></i></button>
+                            <form class="form-horizontal" action="{% url 'users:sign-up' %}" method="post">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                    <div class="mb-3">
+                                        <label class="form-label" for="{{ field.html_name }}">{{ field.label }}</label>
+                                        {{ field }}
                                     </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Пароль ещё раз</label>
-                                    <div class="input-group auth-pass-inputgroup">
-                                        <input type="password" class="form-control" placeholder="Введите пароль"
-                                            aria-label="Password" aria-describedby="password-addon">
-                                        <button class="btn btn-light " type="button" id="password-addon"><i
-                                                class="mdi mdi-eye-outline"></i></button>
-                                    </div>
-                                </div>
+                                {% endfor %}
 
                                 <div class="mt-3 d-grid">
-                                    <a href="{% url 'crm:home' %}" class="btn btn-primary waves-effect waves-light" type="submit">Зарегистрироваться</a>
+                                    <button class="btn btn-primary waves-effect waves-light" type="submit">Зарегистрироваться</button>
+                                    <!-- <a href="{% url 'crm:home' %}" class="btn btn-primary waves-effect waves-light" type="submit">Зарегистрироваться</a> -->
                                 </div>
 
                                 <div class="mt-4 text-center">

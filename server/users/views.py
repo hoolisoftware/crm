@@ -1,12 +1,32 @@
+from . import forms
+
 from django.views import generic
+from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView
+
+from django.forms import Form
+from django.contrib.auth import login
+from django.http.response import HttpResponse
 
 
-class SignUpView(generic.TemplateView):
+class SignUpView(generic.CreateView):
+    form_class = forms.UserSignUpForm
     template_name = 'users/sign-up.django-html'
+    success_url = reverse_lazy('crm:home')
 
 
-class SignInView(generic.TemplateView):
+class SignInView(LoginView):
+    form_class = forms.UserSignInForm
     template_name = 'users/sign-in.django-html'
+    success_url = reverse_lazy('crm:home')
+
+    def form_valid(self, form: Form) -> HttpResponse:
+
+        if not form.cleaned_data['remember_me']:
+            self.request.session.set_expiry(0)
+
+        login(self.request, form.get_user())
+        return super().form_valid(form)
 
 
 class PasswordForgotView(generic.TemplateView):
