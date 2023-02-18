@@ -41,11 +41,17 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="{{ form.username.html_name }}">{{ form.username.label }}</label>
                                     {{ form.username }}
+                                    {% for error in form.username.errors %}
+                                        <span class="text-danger">{{ error }}</span>
+                                    {% endfor %}
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="{{ form.password.html_name }}">{{ form.password.label }}</label>
                                     {{ form.password }}
+                                    {% for error in form.username.errors %}
+                                        <span class="text-danger">{{ error }}</span>
+                                    {% endfor %}
                                 </div>
                                 
                                 <div class="form-check">
