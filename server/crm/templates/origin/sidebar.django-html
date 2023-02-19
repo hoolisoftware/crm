@@ -77,6 +77,12 @@
                         <span key="t-file-manager">Забыл пароль</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{% url 'users:logout' %}" class="waves-effect">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span key="t-file-manager">Выйти</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
