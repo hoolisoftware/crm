@@ -35,6 +35,7 @@
                                             class="img-thumbnail rounded-circle" />
                                     </div>
                                     <h5 class="font-size-15 text-truncate">{{ request.user.first_name }}</h5>
+                                    <h5 class="font-size-15 text-truncate text-muted">ID: {{ request.user.id }}</h5>
                                 </div>
 
                                 <div class="col-sm-8">
