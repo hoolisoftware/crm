@@ -52,10 +52,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- end table-responsive -->
                 </div>
             </div>
         </div>
     </div>
+    {% include 'origin/footer.django-html' %}
 </div>
 {% endblock %}

@@ -30,22 +30,22 @@
                         <span key="t-dashboards">Страницы Работодателя</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-default">Мои проекты</a></li>
+                        <li><a href="{% url 'crm:account-project-list' %}" key="t-default">Мои проекты</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-default">Детали проекта</a></li>
+                        <li><a href="{% url 'crm:account-project-detail' pk=1 %}" key="t-default">Детали проекта</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-default">Редактировать проект</a></li>
+                        <li><a href="{% url 'crm:account-project-create' %}" key="t-default">Редактировать проект</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-default">Детали должности проекта</a></li>
+                        <li><a href="{% url 'crm:account-project-position-detail' pk=1 %}" key="t-default">Детали должности проекта</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-default">Редактировать должность проекта</a></li>
+                        <li><a href="{% url 'crm:account-project-position-create' pk=1 %}" key="t-default">Редактировать должность проекта</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-default">Добавить сотрудника на должность</a></li>
+                        <li><a href="{% url 'crm:account-project-position-add-employee' pk=1 %}" key="t-default">Добавить сотрудника на должность</a></li>
                     </ul>
                 </li>
 

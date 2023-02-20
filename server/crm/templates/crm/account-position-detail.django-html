@@ -57,6 +57,10 @@
                                 <td>Всего проект вам должен</td>
                                 <td>xxx руб.</td>
                             </tr>
+                            <tr>
+                                <td>Всего проект вам должен за текущий месяц</td>
+                                <td>xxx руб.</td>
+                            </tr>
                         </table>
                         <h3>
                             Информация о должности
@@ -112,5 +116,6 @@
                 </div>
             </div>
         </div>
+        {% include 'origin/footer.django-html' %}
     </div>
 {% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'origin/base.django-html' %}
+
+{% block title %}
+Создать должность
+{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <nav class="mb-3" aria-label="breadcrumb">
+                <div>
+                  <span><a href="{% url 'crm:home' %}">Главная</a></span>
+                  /
+                  <span><a href="{% url 'crm:account-project-list' %}">Мои проекты</a></span>
+                  /
+                  <span><a href="{% url 'crm:account-project-detail' pk=1 %}"><Название проекта></a></span>
+                  /
+                  <span>Создать должность</span>
+                </div>
+            </nav>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="alert alert-success"><i class="fa-solid fa-thumbs-up"></i> &nbsp;Должность успешно создана!</div>
+                            <h4 class="card-title">Заполните анкету для создания должности</h4>
+                            <p class="card-title-desc">И добавляйте сотрудников что бы отслеживать их активность</p>
+
+                            <div class="mb-3 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">Название</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" value="Рустам"
+                                        id="example-text-input">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">Цена смены (руб.)</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" value="5000"
+                                        id="example-text-input">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">Цена часа переработки (руб.)</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" value="500"
+                                        id="example-text-input">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">Кол-во часов в смене</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" value="10"
+                                        id="example-text-input">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">Разрыв между сменами (ч)</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" value="14"
+                                        id="example-text-input">
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="btn btn-success w-100">
+                                        Создать
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div>
+        </div>
+    </div>
+    {% include 'origin/footer.django-html' %}
+</div>
+{% endblock %}

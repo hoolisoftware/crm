@@ -1,0 +1,60 @@
+{% extends 'origin/base.django-html' %}
+
+{% block title %}
+Мои проекты
+{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <nav class="mb-3" aria-label="breadcrumb">
+                <div>
+                    <span><a href="{% url 'crm:home' %}">Главная</a></span>
+                    /
+                    <span>Мои проекты</span>
+                </div>
+            </nav>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Ваши проекты</h4>
+                    <div class="table-responsive">
+                        <table class="table align-middle table-nowrap mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="align-middle">ID проекта</th>
+                                    <th class="align-middle">Название</th>
+                                    <th class="align-middle">Кол-во должностей</th>
+                                    <th class="align-middle">Кол-во сотрудников</th>
+                                    <th class="align-middle">Дата создания</th>
+                                    <th class="align-middle">Детали</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="javascript: void(0);" class="text-body fw-bold">#SK2540</a>
+                                    </td>
+                                    <td>ООО Hooli Software</td>
+                                    <td>2</td>
+                                    <td>12</td>
+                                    <td>02/06/2002</td>
+                                    <td>
+                                        <!-- Button trigger modal -->
+                                        <a href="{% url 'crm:account-project-detail' pk=1 %}"
+                                            class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
+                                            Подробнее
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'crm:account-project-create' %}" class="btn btn-success w-100"><i class="fa-solid fa-plus"></i> &nbsp;Создать проект</a>
+        </div>
+    </div>
+    {% include 'origin/footer.django-html' %}
+</div>
+{% endblock %}

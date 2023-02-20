@@ -50,8 +50,8 @@
                                             </div>
                                         </div>
                                         <div class="mt-4">
-                                            <a href="javascript: void(0);"
-                                                class="btn btn-primary waves-effect waves-light btn-sm">View Profile
+                                            <a href="{% url 'users:account' %}"
+                                                class="btn btn-primary waves-effect waves-light btn-sm">Настройки профиля
                                                 <i class="mdi mdi-arrow-right ms-1"></i></a>
                                         </div>
                                     </div>
@@ -95,7 +95,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- end table-responsive -->
                         </div>
                     </div>
                     <div class="card">

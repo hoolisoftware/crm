@@ -41,7 +41,11 @@ urlpatterns = [
          views.AccountProjectUpdateView.as_view(),
          name='account-project-update'),
 
-    path('account/projects/positions/create/',
+    path('account/projects/positions/<int:pk>/',
+         views.AccountProjectPositionDetailView.as_view(),
+         name='account-project-position-detail'),
+
+    path('account/projects/<int:pk>/positions/create/',
          views.AccountProjectPositionCreateView.as_view(),
          name='account-project-position-create'),
 

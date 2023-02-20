@@ -1,0 +1,128 @@
+{% extends 'origin/base.django-html' %}
+
+{% block title %}
+Детали должности проекта
+{% endblock %}
+
+{% block content %}
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <nav class="mb-3" aria-label="breadcrumb">
+                    <div>
+                      <span><a href="{% url 'crm:home' %}">Главная</a></span>
+                      /
+                      <span><a href="{% url 'crm:account-position-list' %}">Мои проекты</a></span>
+                      /
+                      <span><a href="{% url 'crm:account-project-detail' pk=1 %}"><Название проекта></a></span>
+                      /
+                      <span><Название должности></span>
+                    </div>
+                </nav>
+                <div class="card">
+                    <div class="card-body">
+                        <h2>
+                            <Название должности>
+                        </h2>
+                        <h4 class="text-muted">
+                            <Название проекта>
+                        </h4>
+                        <a href="{% url 'crm:account-project-position-create' pk=1 %}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Редактировать</a>
+                        <a href="{% url 'crm:account-project-update' pk=1 %}" class="btn btn-success">
+                            <i class="fa-solid fa-user-plus"></i> &nbsp;Добавить сотрудника
+                        </a>
+                        <br>
+                        <br>
+                        <h3>Статистика</h3>
+                        <table class="table">
+                            <tr>
+                                <td>Кол-во смен за всё время / оплаченных</td>
+                                <td>xxx / xxx</td>
+                            </tr>
+                            <tr>
+                                <td>Кол-во смен за текущий месяц / оплаченных</td>
+                                <td>xxx / xxx</td>
+                            </tr>
+                            <tr>
+                                <td>Кол-во доп. часов за всё время / оплаченных</td>
+                                <td>xxx / xxx</td>
+                            </tr>
+                            <tr>
+                                <td>Кол-во доп. часов за текущий месяц / оплаченных</td>
+                                <td>xxx / xxx</td>
+                            </tr>
+                            <tr>
+                                <td>Всего вы должны сотрудникам</td>
+                                <td>xxx руб.</td>
+                            </tr>
+                            <tr>
+                                <td>Всего вы должны сотрудникам на текущий месяц</td>
+                                <td>xxx руб.</td>
+                            </tr>
+                        </table>
+                        <h3>
+                            Информация о должности
+                        </h3>
+                        <table class="table">
+                            <tr>
+                                <td>Цена за смену</td>
+                                <td>xxx руб.</td>
+                            </tr>
+                            <tr>
+                                <td>Цена за доп. час</td>
+                                <td>xxx руб.</td>
+                            </tr>
+                            <tr>
+                                <td>Разрыв между сменами (ч)</td>
+                                <td>xxx</td>
+                            </tr>
+                            <tr>
+                                <td>Кол-во рабочих дней в неделю</td>
+                                <td>xxx</td>
+                            </tr>
+                            <tr>
+                                <td>День зарплат</td>
+                                <td>xxx</td>
+                            </tr>
+                        </table>
+                        <h3>
+                            Сотрудники
+                        </h3>
+                        <br>
+                        <div class="table-responsive">
+                            <table class="table align-middle table-nowrap mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="align-middle">ID сотрудника</th>
+                                        <th class="align-middle">Имя Фамилия</th>
+                                        <th class="align-middle">Кол-во смен за месяц</th>
+                                        <th class="align-middle">Кол-во доп. часов за месяц</th>
+                                        <th class="align-middle">Удалить из должности</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="javascript: void(0);" class="text-body fw-bold">#SK2540</a>
+                                        </td>
+                                        <td>Ильхан Татаев</td>
+                                        <td>XX</td>
+                                        <td>XX</td>
+                                        <td>
+                                            <!-- Button trigger modal -->
+                                            <a href="{% url 'crm:account-position-detail' pk=1 %}"
+                                                class="btn btn-danger btn-sm btn-rounded waves-effect waves-light">
+                                                <i class="fa-solid fa-trash"></i> &nbsp;Удалить
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include 'origin/footer.django-html' %}
+    </div>
+{% endblock %}
