@@ -1,8 +1,64 @@
 {% extends 'origin/base.django-html' %}
 
 {% block title %}
-    Настройки аккаунта
+Настройки аккаунта
 {% endblock %}
 
 {% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Настройки аккаунта</h4>
+                            <p class="card-title-desc">Здесь вы можете изменить данные вашей учётной записи</p>
+
+                            <div class="mb-3 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">Имя</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" value="Рустам"
+                                        id="example-text-input">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">Фамилия</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" value="Ганиев"
+                                        id="example-text-input">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">Почта</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="mail" value="rustamganiev@mail.com"
+                                        id="example-text-input">
+                                    <span>После изменения почты ваша учётная запись будет заморожена и вам придётся верифицироваться через отправленное письмо.</span>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">Номер телефона (+7)</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="number" value="5334685295"
+                                        id="example-text-input">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="btn btn-success w-100">
+                                        Сохранить
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
