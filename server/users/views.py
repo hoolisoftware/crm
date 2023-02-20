@@ -4,10 +4,15 @@ from . import mixins as custom_mixins
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.forms import Form
 from django.contrib.auth import login
 from django.http.response import HttpResponse
+
+
+class AccountView(LoginRequiredMixin, generic.TemplateView):
+    template_name = 'users/account.django-html'
 
 
 class SignUpView(custom_mixins.AlreadySignedInMixin, generic.CreateView):

@@ -9,8 +9,12 @@ class Project(models.Model):
     name = models.CharField('название', max_length=255)
     description = models.TextField('описание')
     created = models.DateField(auto_now_add=True)
-    owner = models.ForeignKey(verbose_name='владелец',
-                              to=User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(
+        verbose_name='владелец',
+        to=User,
+        on_delete=models.CASCADE,
+        related_name='projects'
+    )
 
     class Meta:
         verbose_name = 'проект'
@@ -23,7 +27,11 @@ class Project(models.Model):
 class Position(models.Model):
     project = models.ForeignKey(
         verbose_name='проект', to=Project, on_delete=models.CASCADE)
-    employee = models.ManyToManyField(verbose_name='сотрудники', to=User)
+    employee = models.ManyToManyField(
+        verbose_name='сотрудники',
+        to=User,
+        related_name='positions'
+    )
     name = models.CharField('название', max_length=255)
     daily_salary = models.IntegerField('цена смены')
     daily_salary_additional = models.IntegerField('цена часа переработки')
