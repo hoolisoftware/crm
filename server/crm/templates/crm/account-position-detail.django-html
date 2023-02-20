@@ -1,0 +1,93 @@
+{% extends 'origin/base.django-html' %}
+
+{% block title %}
+Детали должности
+{% endblock %}
+
+{% block content %}
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <nav class="mb-3" aria-label="breadcrumb">
+                    <div>
+                      <span><a href="{% url 'crm:home' %}">Главная</a></span>
+                      /
+                      <span><a href="{% url 'crm:account-position-list' %}">Мои должности</a></span>
+                      /
+                      <span><Название должности></span>
+                    </div>
+                </nav>
+                <div class="card">
+                    <div class="card-body">
+                        <h2>
+                            <Название должности>
+                        </h2>
+                        <h4>
+                            <a href="#">
+                                <Название проекта>
+                            </a>
+                        </h4>
+                        <br>
+                        <button class="btn btn-success">
+                            Отметиться
+                        </button>
+                        <button class="btn btn-success">
+                            Отметиться (сверхурочно)
+                        </button>
+                        <br>
+                        <br>
+                        <p class="text-muted">Вы отмечались на данной должности в последний раз 02 июня 2012г.</p>
+                        <h3>Статистика</h3>
+                        <table class="table">
+                            <tr>
+                                <td>Кол-во смен за всё время / оплаченных</td>
+                                <td>xxx / xxx</td>
+                            </tr>
+                            <tr>
+                                <td>Кол-во смен за текущий месяц / оплаченных</td>
+                                <td>xxx / xxx</td>
+                            </tr>
+                            <tr>
+                                <td>Кол-во доп. часов за всё время / оплаченных</td>
+                                <td>xxx / xxx</td>
+                            </tr>
+                            <tr>
+                                <td>Кол-во доп. часов за текущий месяц / оплаченных</td>
+                                <td>xxx / xxx</td>
+                            </tr>
+                            <tr>
+                                <td>Всего проект вам должен</td>
+                                <td>xxx руб.</td>
+                            </tr>
+                        </table>
+                        <h3>
+                            Информация о должности
+                        </h3>
+                        <table class="table">
+                            <tr>
+                                <td>Цена за смену</td>
+                                <td>xxx руб.</td>
+                            </tr>
+                            <tr>
+                                <td>Цена за доп. час</td>
+                                <td>xxx руб.</td>
+                            </tr>
+                            <tr>
+                                <td>Разрыв между сменами (ч)</td>
+                                <td>xxx</td>
+                            </tr>
+                            <tr>
+                                <td>Кол-во рабочих дней в неделю</td>
+                                <td>xxx</td>
+                            </tr>
+                            <tr>
+                                <td>День зарплат</td>
+                                <td>xxx</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

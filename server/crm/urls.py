@@ -9,20 +9,20 @@ urlpatterns = [
 
     # Employee
     path('account/positions/',
-         views.AccountPositionDetailView.as_view(),
-         name=''),
+         views.AccountPositionListView.as_view(),
+         name='account-position-list'),
 
     path('account/positions/<int:pk>/',
-         views.AccountPositionListView.as_view(),
-         name=''),
+         views.AccountPositionDetailView.as_view(),
+         name='account-position-detail'),
 
     path('account/positions/<int:pk>/ok/',
          views.AccountPositionOkView.as_view(),
-         name=''),
+         name='account-position-ok'),
 
     path('account/positions/<int:pk>/ok-add/',
          views.AccountPositionOkAddView.as_view(),
-         name=''),
+         name='account-position-okadd'),
 
     # Employer
     path('account/projects/',

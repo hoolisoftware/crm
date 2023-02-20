@@ -12,16 +12,16 @@
                         <span key="t-dashboards">Страницы сотрудника</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-default">Мои должности</a></li>
+                        <li><a href="{% url 'crm:account-position-list' %}" key="t-default">Мои должности</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-default">Детали должности</a></li>
+                        <li><a href="{% url 'crm:account-position-detail' pk=1 %}" key="t-default">Детали должности</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-default">Отметиться</a></li>
+                        <li><a href="{% url 'crm:account-position-ok' pk=1 %}" key="t-default">Отметиться</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" key="t-default">Отметиться (сверхурочно)</a></li>
+                        <li><a href="{% url 'crm:account-position-okadd' pk=1 %}" key="t-default">Отметиться (сверхурочно)</a></li>
                     </ul>
                 </li>
                 <li>
@@ -52,7 +52,14 @@
                 <li class="menu-title" key="t-apps">Типовые страницы</li>
 
                 <li>
-                    <a href="#" class="waves-effect">
+                    <a href="{% url 'users:account' %}" class="waves-effect">
+                        <i class="fa-solid fa-user"></i>
+                        <span key="t-file-manager">Настройки профиля</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'crm:account-project-create' %}" class="waves-effect">
                         <i class="fa-sharp fa-solid fa-plus"></i>
                         <span key="t-file-manager">Создать проект</span>
                     </a>
