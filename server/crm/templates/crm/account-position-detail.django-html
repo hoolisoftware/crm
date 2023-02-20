@@ -22,18 +22,16 @@
                         <h2>
                             <Название должности>
                         </h2>
-                        <h4>
-                            <a href="#">
-                                <Название проекта>
-                            </a>
+                        <h4 class="text-muted">
+                            <Название проекта>
                         </h4>
                         <br>
-                        <button class="btn btn-success">
+                        <a href="{% url 'crm:account-position-ok' pk=1 %}" class="btn btn-success">
                             Отметиться
-                        </button>
-                        <button class="btn btn-success">
+                        </a>
+                        <a href="{% url 'crm:account-position-okadd' pk=1 %}" class="btn btn-success">
                             Отметиться (сверхурочно)
-                        </button>
+                        </a>
                         <br>
                         <br>
                         <p class="text-muted">Вы отмечались на данной должности в последний раз 02 июня 2012г.</p>
@@ -83,6 +81,31 @@
                             <tr>
                                 <td>День зарплат</td>
                                 <td>xxx</td>
+                            </tr>
+                        </table>
+                        <h3>
+                            Информация о Проекте
+                        </h3>
+                        <table class="table">
+                            <tr>
+                                <td>Название</td>
+                                <td>ООО Hooli Software</td>
+                            </tr>
+                            <tr>
+                                <td>Описание</td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae accusamus perferendis sed fuga sapiente nulla fugiat quo laboriosam, non eum pariatur! Rerum deleniti animi enim facere. Eaque iste aut magnam!</td>
+                            </tr>
+                            <tr>
+                                <td>Дата создания</td>
+                                <td>xxx</td>
+                            </tr>
+                            <tr>
+                                <td>Кол-во рабочих дней в неделю</td>
+                                <td>xxx</td>
+                            </tr>
+                            <tr>
+                                <td>Владелец</td>
+                                <td>Имя Фамилия <a href="tel:90314">+7xxxxxxxxxx</a></td>
                             </tr>
                         </table>
                     </div>

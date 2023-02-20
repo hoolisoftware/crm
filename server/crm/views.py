@@ -15,11 +15,11 @@ class AccountPositionListView(LoginRequiredMixin, generic.TemplateView):
 
 
 class AccountPositionOkAddView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'crm/account-position-ok.django-html'
+    template_name = 'crm/account-position-ok-add.django-html'
 
 
 class AccountPositionOkView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'crm/account-position-ok-add.django-html'
+    template_name = 'crm/account-position-ok.django-html'
 
 
 class AccountProjectCreateView(LoginRequiredMixin, generic.TemplateView):
