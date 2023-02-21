@@ -3,7 +3,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost', 'crm.hoolisoftware.xyz']
 CSRF_TRUSTED_ORIGINS = [
     'http://0.0.0.0',
     'http://127.0.0.1',
