@@ -72,12 +72,10 @@ class UserSignInForm(AuthenticationForm):
         self.fields['username'].label = _('Email')
         self.fields['username'].widget = forms.TextInput(attrs={
             **self.common_attributes,
-            'placeholder': _('Enter email'),
         })
 
-        self.fields['username'].label = _('Password')
+        self.fields['password'].label = _('Password')
         self.fields['password'].widget = widgets.PasswordWidget(attrs={
             **self.common_attributes,
-            'placeholder': _('Enter password'),
             'addon': 'password-addon'
         })
