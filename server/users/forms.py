@@ -1,4 +1,4 @@
-from . import widgets
+from core import mixins
 from typing import Tuple, Dict
 from django.utils.translation import gettext_lazy as _
 
@@ -6,7 +6,24 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
+from . import widgets
+from . import models
+
+
 User = get_user_model()
+
+
+class AccountUpdateForm(mixins.AddClassNameMixin, forms.ModelForm):
+
+    class Meta:
+        model = models.User
+        fields = (
+            'first_name',
+            'last_name',
+            'email',
+            'phone'
+        )
+
 
 
 class UserSignUpForm(UserCreationForm):

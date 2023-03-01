@@ -1,0 +1,82 @@
+{% extends 'origin/base.django-html' %}
+
+{% block title %}
+Детали смены №{{object.id}}
+{% endblock %}
+
+{% block content %}
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <nav class="mb-3" aria-label="breadcrumb">
+                    <div>
+                      <span><a href="{% url 'crm:account-calendar' %}">Календарь</a></span>
+                      /
+                      <span>Детали смены №{{ object.id }}</span>
+                    </div>
+                </nav>  
+                <div class="card">
+                    <div class="card-body">
+                        {% for message in messages %}
+                            <div class="alert alert-success">
+                                {{message}}
+                            </div>
+                        {% endfor %}
+                        <div style="overflow-x: auto;">
+                            <table class="table" style="min-width: 350px">
+                                <tr>
+                                    <td>Дата</td>
+                                    <td>{{ object.date }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Начало смены</td>
+                                    <td>{{ object.start }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Конец смены</td>
+                                    <td>{{ object.end }}</td>
+                                </tr>
+                                <tr>
+                                    <td>ФИО</td>
+                                    <td>{{ object.employee.get_full_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Телефон</td>
+                                    <td>{{ object.employee.phone }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Адрес</td>
+                                    <td>{{ object.adress }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Должность</td>
+                                    <td>{{ object.position }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Цена смены</td>
+                                    <td>{{ object.price }} руб.</td>
+                                </tr>
+                                <tr>
+                                    <td>Цена часа переработки</td>
+                                    <td>{{ object.price_add }} руб.</td>
+                                </tr>
+                                <tr>
+                                    <td>Цена км. от МКАД</td>
+                                    <td>{{ object.price_km }} руб.</td>
+                                </tr>
+                                <tr>
+                                    <td>Сумма</td>
+                                    <td>xxx руб.</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <a href="{% url 'crm:account-duty-update' object.id %}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> &nbsp;Изменить</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include 'origin/footer.django-html' %}
+    </div>
+{% endblock %}

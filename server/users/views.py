@@ -3,16 +3,30 @@ from . import mixins as custom_mixins
 
 from django.views import generic
 from django.urls import reverse_lazy
+from django.contrib.auth import get_user_model
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 
 from django.forms import Form
 from django.contrib.auth import login
 from django.http.response import HttpResponse
 
+from . import forms
 
-class AccountView(LoginRequiredMixin, generic.TemplateView):
+
+User = get_user_model()
+
+
+class AccountView(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
+    model = User
     template_name = 'users/account.django-html'
+    form_class = forms.AccountUpdateForm
+    success_url = reverse_lazy('users:account')
+    success_message = 'Вы успешно обновили свои данные'
+
+    def get_object(self):
+        return self.request.user
 
 
 class SignUpView(custom_mixins.AlreadySignedInMixin, generic.CreateView):

@@ -1,0 +1,61 @@
+{% extends 'origin/base.django-html' %}
+
+{% load core %}
+
+{% block title %}
+    {% if object %}
+        Редактировать смену №{{ object.id }}
+    {% else %}
+        Добавить смену
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <nav class="mb-3" aria-label="breadcrumb">
+                    <div>
+                        <span><a href="{% url 'crm:account-calendar' %}">Календарь</a></span>
+                        /
+                        <span>
+                            {% if object %}
+                                Редактировать смену №{{ object.id }}
+                            {% else %}
+                                Добавить смену
+                            {% endif %}
+                        </span>
+                    </div>
+                </nav>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title-desc">Отмечаясь на данной странице, вы подтверждаете факт отработки смены
+                            {% if view.kwargs.y and view.kwargs.m and view.kwargs.d %}в указанной дате ({{ view.kwargs.y
+                            }}/{{ view.kwargs.m }}/{{ view.kwargs.d }}){% endif %}.</a></p>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% for field in form %}
+                            <div class="mb-3 row">
+                                <label for="{{ field.id }}" class="col-md-2 col-form-label">{{ field.label }}</label>
+                                <div class="col-md-10">
+                                    {{ field }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <div class="row">
+                                <button type='submit' class="btn btn-primary">
+                                    {% if object %}
+                                    <i class="fa-solid fa-pen-to-square"></i> &nbsp; Сохранить
+                                    {% else %}
+                                        <i class="fa-solid fa-plus"></i> &nbsp; Добавить
+                                    {% endif %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include 'origin/footer.django-html' %}
+    </div>
+    {% endblock %}

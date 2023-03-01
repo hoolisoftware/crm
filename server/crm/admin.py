@@ -3,7 +3,4 @@ from django.contrib import admin
 from . import models
 
 
-admin.site.register(models.Project)
-admin.site.register(models.Position)
-admin.site.register(models.PositionMark)
-admin.site.register(models.PositionAdditionalMark)
+admin.site.register(models.PositionDuty)

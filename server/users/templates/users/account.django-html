@@ -11,52 +11,36 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body">
-
+                        <form class="card-body" method="POST">
+                            {% csrf_token %}
                             <h4 class="card-title">Настройки аккаунта</h4>
                             <p>Ваш уникальный ID : {{ request.user.id }}</p>
                             <p class="card-title-desc">Здесь вы можете изменить данные вашей учётной записи</p>
 
-                            <div class="mb-3 row">
-                                <label for="example-text-input" class="col-md-2 col-form-label">Имя</label>
-                                <div class="col-md-10">
-                                    <input class="form-control" type="text" value="Рустам"
-                                        id="example-text-input">
+                            {% for message in messages %}
+                                <div class="alert alert-success">
+                                    {{ message }}
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="example-text-input" class="col-md-2 col-form-label">Фамилия</label>
-                                <div class="col-md-10">
-                                    <input class="form-control" type="text" value="Ганиев"
-                                        id="example-text-input">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="example-text-input" class="col-md-2 col-form-label">Почта</label>
-                                <div class="col-md-10">
-                                    <input class="form-control" type="mail" value="rustamganiev@mail.com"
-                                        id="example-text-input">
-                                    <span>После изменения почты ваша учётная запись будет заморожена и вам придётся верифицироваться через отправленное письмо.</span>
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="example-text-input" class="col-md-2 col-form-label">Номер телефона (+7)</label>
-                                <div class="col-md-10">
-                                    <input class="form-control" type="number" value="5334685295"
-                                        id="example-text-input">
-                                </div>
-                            </div>
+                            {% endfor %}
 
+                            {% for field in form %}
+                            <div class="mb-3 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">{{ field.label }}</label>
+                                <div class="col-md-10">
+                                        {{ field }}
+                                    </div>
+                                </div>
+                            {% endfor %}
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="btn btn-success w-100">
+                                    <button type="submit" class="btn btn-success w-100">
                                         Сохранить
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
 
                         </div>
-                    </div>
+                    </form>
                 </div> <!-- end col -->
             </div>
         </div>

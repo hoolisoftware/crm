@@ -4,90 +4,42 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title" key="t-menu">Ролевые страницы</li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fa-solid fa-briefcase"></i>
-                        <span key="t-dashboards">Страницы сотрудника</span>
+                    <a href="{% url 'crm:account-calendar' %}" class="waves-effect">
+                        <i class="fa-solid fa-calendar"></i>
+                        <span>Календарь сотрудника</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{% url 'crm:account-position-list' %}" key="t-default">Мои должности</a></li>
-                    </ul>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{% url 'crm:account-position-detail' pk=1 %}" key="t-default">Детали должности</a></li>
-                    </ul>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{% url 'crm:account-position-ok' pk=1 %}" key="t-default">Отметиться</a></li>
-                    </ul>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{% url 'crm:account-position-okadd' pk=1 %}" key="t-default">Отметиться (сверхурочно)</a></li>
-                    </ul>
                 </li>
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fa-solid fa-building"></i>
-                        <span key="t-dashboards">Страницы Работодателя</span>
+                    <a href="{% url 'crm:account-duty-table' %}" class="waves-effect">
+                        <i class="fa-solid fa-table"></i>
+                        <span>Таблица смен сотрудника</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{% url 'crm:account-project-list' %}" key="t-default">Мои проекты</a></li>
-                    </ul>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{% url 'crm:account-project-detail' pk=1 %}" key="t-default">Детали проекта</a></li>
-                    </ul>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{% url 'crm:account-project-create' %}" key="t-default">Редактировать проект</a></li>
-                    </ul>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{% url 'crm:account-project-position-detail' pk=1 %}" key="t-default">Детали должности проекта</a></li>
-                    </ul>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{% url 'crm:account-project-position-create' pk=1 %}" key="t-default">Редактировать должность проекта</a></li>
-                    </ul>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{% url 'crm:account-project-position-add-employee' pk=1 %}" key="t-default">Добавить сотрудника на должность</a></li>
-                    </ul>
                 </li>
-
-                <li class="menu-title" key="t-apps">Типовые страницы</li>
+                <li>
+                    <a href="{% url 'crm:project-calendar' %}" class="waves-effect">
+                        <i class="fa-solid fa-calendar"></i>
+                        <span>Календарь работодателя</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'crm:project-duty-table' %}" class="waves-effect">
+                        <i class="fa-solid fa-table"></i>
+                        <span>Таблица смен сотрудников</span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="{% url 'users:account' %}" class="waves-effect">
                         <i class="fa-solid fa-user"></i>
-                        <span key="t-file-manager">Настройки профиля</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'crm:account-project-create' %}" class="waves-effect">
-                        <i class="fa-sharp fa-solid fa-plus"></i>
-                        <span key="t-file-manager">Создать проект</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'users:sign-in' %}" class="waves-effect">
-                        <i class="fa-solid fa-right-to-bracket"></i>
-                        <span key="t-chat">Войти</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'users:sign-up' %}" class="waves-effect">
-                        <i class="fa-solid fa-user-plus"></i>
-                        <span key="t-file-manager">Регистрация</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'users:sign-up' %}" class="waves-effect">
-                        <i class="fa-solid fa-key"></i>
-                        <span key="t-file-manager">Забыл пароль</span>
+                        <span>Настройки профиля</span>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'users:logout' %}" class="waves-effect">
                         <i class="fa-solid fa-right-to-bracket"></i>
-                        <span key="t-file-manager">Выйти</span>
+                        <span>Выйти</span>
                     </a>
                 </li>
             </ul>

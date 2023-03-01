@@ -53,7 +53,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages'
-            ]
+            ],
+            'libraries': {
+                'core': 'templatetags.core',
+            },
         }
     }
 ]
@@ -85,6 +88,8 @@ USE_TZ = True
 USE_I18N = True
 TIME_ZONE = 'UTC'
 LANGUAGE_CODE = 'ru'
+DATE_INPUT_FORMATS = ('%Y-%m-%d',)
+TIME_INPUT_FORMATS = ('%H:%M',)
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
@@ -95,7 +100,7 @@ MEDIA_ROOT = BASE_DIR / 'mediafiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 
-LOGIN_REDIRECT_URL = 'crm:home'
+LOGIN_REDIRECT_URL = 'crm:account-dashboard'
 LOGOUT_REDIRECT_URL = 'users:sign-in'
 
 LOGIN_URL = 'users:sign-in'

@@ -14,4 +14,8 @@ class User(AbstractUser):
 
     objects = EmailUserManager()
 
-    phone = models.IntegerField(null=True)
+    phone = models.IntegerField('номер телефона', null=True)
+    is_manager = models.BooleanField('является менеджером', default=False)
+
+    def __str__(self):
+        return f'{self.get_full_name()} {self.email}'

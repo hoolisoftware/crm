@@ -1,4 +1,4 @@
-from .common import *
+from .common import * # noqa ignore
 
 from os import environ
 import logging.config

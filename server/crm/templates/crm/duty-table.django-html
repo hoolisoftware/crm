@@ -1,0 +1,147 @@
+{% extends 'origin/base.django-html' %}
+
+{% block title %}
+Таблица смен
+{% endblock %}
+
+{% block content %}
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <nav class="mb-3" aria-label="breadcrumb">
+                    <div>
+                      <span><a href="{% url 'crm:account-calendar' %}">Главная</a></span>
+                      /
+                      <span>Таблица смен</span>
+                    </div>
+                </nav>  
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <div>
+                                <div class="color_helping" style="width: 50px; height: 1em; display: inline-block;"></div>
+                                Вспомогательные (автозаполнение)
+                            </div>
+                            <div>
+                                <div class="color_main" style="width: 50px; height: 1em; display: inline-block;"></div>
+                                Основные (автозаполнение)
+                            </div>
+                            <div>
+                                <div class="color_manual" style="width: 50px; height: 1em; display: inline-block;"></div>
+                                Рукописное заполнение
+                            </div>
+                        </div>
+                        <br>
+                        <div style="overflow-x: auto;">
+                            <table class="table table-bordered" style="min-width: 2000px">
+                                <colgroup>
+                                    <col class="color_helping">
+                                    <col class="color_manual">
+                                    <col class="color_helping">
+                                    <col class="color_helping">                                    
+                                    <col class="color_manual">
+                                    <col class="color_manual">
+                                    <col class="color_manual">
+                                    <col class="color_manual">
+                                    <col class="color_manual">
+                                    <col class="color_helping">
+                                    <col class="color_helping">
+                                    <col class="color_helping">
+                                    <col class="color_main">
+                                    <col class="color_manual">
+                                    <col class="color_helping">
+                                    <col class="color_helping">
+                                    <col class="color_main">
+                                    <col class="color_main">                                    
+                                    <col class="color_manual">
+                                    <col class="color_helping">
+                                    <col class="color_helping">
+                                    <col class="color_helping">
+                                    <col style="background-color: gold;" >
+                                  </colgroup>
+                                <tr>
+                                    <th>№</th>
+                                    <th>{{ object.date.editable }}</th>
+                                    <th>Дата/время начала смены</th>
+                                    <th>Дата/время окончания смены</th>
+                                    <th>Кол-во суток в смене</th>
+                                    <th>Коэфициент смены</th>
+                                    <th>Адрес</th>
+                                    <th>Время начала смены</th>
+                                    <th>Время конца смены</th>
+                                    <th>Кол-во рабочих часов</th>
+                                    <th>Часы переработки</th>
+                                    <th>Текущий обед</th>
+                                    <th>Кол-во часов между сменами</th>
+                                    <th>Кол-во окр. часов между сменами</th>
+                                    <th>Недосып</th>
+                                    <th>Сумма переработки</th>
+                                    <th>Кол-во км. за МКАД</th>
+                                    <th>Цена км. за МКАД</th>
+                                    <th>Цена смены</th>
+                                    <th>Цена переработка</th>
+                                    <th>Сумма</th>
+                                </tr>
+                                {% for object in object_list %}
+                                    <tr>
+                                        <td>{{ object.id }}</td>
+                                        <td>{{ object.date|date:'d/m/Y' }}</td>
+                                        <td>{{ object.start_datetime }}</td>
+                                        <td>{{ object.end_datetime }}</td>
+                                        <td>{{ object.days }}</td>
+                                        <td>XXX</td>
+                                        <td>{{ object.address }}</td>
+                                        <td>{{ object.start }}</td>
+                                        <td>{{ object.end }}</td>
+                                        <td>{{ object.hours_int }}</td>
+                                        <td>{{ object.hours_add }}</td>
+                                        <td>{% if object.dinner %}Да{% else %}Нет{% endif %}</td>
+                                        <td>{{ object.hours_since_last }}</td>
+                                        <td>{{ object.hours_since_last|floatformat:0 }}</td>
+                                        <td>XXX</td>
+                                        <td>XXX</td>
+                                        <td>{{ object.km }}</td>
+                                        <td>{{ object.price_km }}</td>
+                                        <td>{{ object.price }}</td>
+                                        <td>{{ object.price_add }}</td>
+                                        <td>XXX</td>
+                                    </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td colspan="21" style="text-align: end;">Сумма без %</td>
+                                    <td colspan="1">XXX</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="21" style="text-align: end;">Сумма с 10% ФК</td>
+                                    <td colspan="1">XXX</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <a class="btn btn-success" href="{% url 'crm:account-duty-create' %}"><i class="fa-solid fa-pen-to-square"></i> &nbsp;Добавить смену</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include 'origin/footer.django-html' %}
+    </div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .color_helping
+    {
+        background-color: #fef2cb;
+    }
+    .color_main
+    {
+        background-color: #bdd6ee;
+    }
+    .color_manual
+    {
+        background-color: #e2efd9;
+    }
+</style>
+{% endblock %}

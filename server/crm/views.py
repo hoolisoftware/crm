@@ -1,66 +1,150 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views import generic
+from django.http import JsonResponse
+
+from . import models
+from . import forms
 
 
-class HomeView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'crm/home.django-html'
+User = get_user_model()
 
 
-class AccountPositionDetailView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'crm/account-position-detail.django-html'
+class AccountDashboardView(LoginRequiredMixin, generic.TemplateView):
+    template_name = 'crm/account-dashboard.django-html'
 
 
-class AccountPositionListView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'crm/account-position-list.django-html'
+class AccountCalendarView(LoginRequiredMixin, generic.TemplateView):
+    template_name = 'crm/duty-calendar.django-html'
 
 
-class AccountPositionOkAddView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'crm/account-position-ok-add.django-html'
+def account_duty(request, y, m):
+    queryset = models.PositionDuty.objects.filter(
+        employee=request.user,
+        date__year=y,
+        date__month=m
+    )
+    return JsonResponse({'duty': [
+        {
+            'id': object.id,
+            'position': object.position,
+            'date': object.date,
+            'paid': object.paid,
+        } for object in queryset
+    ]})
 
 
-class AccountPositionOkView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'crm/account-position-ok.django-html'
+def project_duty(request, y, m):
+    queryset = models.PositionDuty.objects.filter(
+        date__year=y,
+        date__month=m
+    )
+    return JsonResponse({'duty': [
+        {
+            'id': object.id,
+            'position': object.position,
+            'date': object.date,
+            'paid': object.paid,
+        } for object in queryset
+    ]})
 
 
-class AccountProjectCreateView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'crm/account-project-create-update.django-html'
+# (Employee) Duty
+
+class AccountDutyTableView(LoginRequiredMixin, generic.ListView):
+    model = models.PositionDuty
+    template_name = 'crm/duty-table.django-html'
+
+    def get_queryset(self):
+        return models.PositionDuty.objects.filter(employee=self)
 
 
-class AccountProjectUpdateView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'crm/account-project-create-update.django-html'
-
-
-class AccountProjectDetailView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'crm/account-project-detail.django-html'
-
-
-class AccountProjectListView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'crm/account-project-list.django-html'
-
-
-class AccountProjectPositionAddEmployeeView(
+class AccountDutyCreateView(
+    SuccessMessageMixin,
     LoginRequiredMixin,
-    generic.TemplateView
+    generic.CreateView
 ):
-    template_name = 'crm/account-project-position-add-employee.django-html'
+    form_class = forms.PositionDutyForm
+    template_name = 'crm/duty-create-update.django-html'
+    success_message = 'Смена успешно создана!'
+
+    def form_valid(self, form):
+        form.instance.employee = self.request.user
+        return super().form_valid(form)
 
 
-class AccountProjectPositionCreateView(
+class AccountDutyCreateDateView(
+    SuccessMessageMixin,
     LoginRequiredMixin,
-    generic.TemplateView
+    generic.CreateView
 ):
-    template_name = 'crm/account-project-position-create-update.django-html'
+    form_class = forms.PositionDutyDateForm
+    template_name = 'crm/duty-create-update.django-html'
+    success_message = 'Смена успешно создана!'
+
+    def form_valid(self, form):
+        form.instance.employee = self.request.user
+        return super().form_valid(form)
 
 
-class AccountProjectPositionUpdateView(
+class AccountDutyUpdateView(
+    SuccessMessageMixin,
     LoginRequiredMixin,
-    generic.TemplateView
+    generic.UpdateView
 ):
-    template_name = 'crm/account-project-position-create-update.django-html'
+    model = models.PositionDuty
+    form_class = forms.PositionDutyForm
+    template_name = 'crm/duty-create-update.django-html'
+    success_message = 'Смена успешно изменена!'
 
 
-class AccountProjectPositionDetailView(
-    LoginRequiredMixin,
-    generic.TemplateView
-):
-    template_name = 'crm/account-project-position-detail.django-html'
+class AccountDutyDetailView(LoginRequiredMixin, generic.DetailView):
+    model = models.PositionDuty
+    template_name = 'crm/account-duty-detail.django-html'
+
+
+# Duty (Project)
+
+
+class ProjectCalendarView(LoginRequiredMixin, generic.TemplateView):
+    template_name = 'crm/duty-calendar.django-html'
+
+
+class ProjectDutyTableView(LoginRequiredMixin, generic.ListView):
+    model = models.PositionDuty
+    template_name = 'crm/duty-table.django-html'
+
+
+class ProjectDutyTableAccountView(LoginRequiredMixin, generic.ListView):
+    model = models.PositionDuty
+    template_name = 'crm/duty-table.django-html'
+
+    def get_queryset(self):
+        return self.model.objects.filter(employee=User.objects.filter(id=self.kwargs['pk']).first())
+
+
+class ProjectDutyCreateView(LoginRequiredMixin, generic.CreateView):
+    model = models.PositionDuty
+    form_class = forms.PositionDutyProjectForm
+    template_name = 'crm/duty-create-update.django-html'
+
+
+class ProjectDutyCreateDateView(LoginRequiredMixin, generic.CreateView):
+    model = models.PositionDuty
+    form_class = forms.PositionDutyProjectDateForm
+    template_name = 'crm/duty-create-update.django-html'
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+
+class ProjectDutyUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = models.PositionDuty
+    form_class = forms.PositionDutyProjectForm
+    template_name = 'crm/duty-create-update.django-html'
+
+
+class ProjectDutyDetailView(LoginRequiredMixin, generic.DetailView):
+    model = models.PositionDuty
+    template_name = 'crm/duty-detail.django-html'
