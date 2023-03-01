@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -57,7 +59,7 @@ class AccountDutyTableView(LoginRequiredMixin, generic.ListView):
     template_name = 'crm/duty-table.django-html'
 
     def get_queryset(self):
-        return models.PositionDuty.objects.filter(employee=self)
+        return models.PositionDuty.objects.filter(employee=self.request.user)
 
 
 class AccountDutyCreateView(
@@ -85,6 +87,7 @@ class AccountDutyCreateDateView(
 
     def form_valid(self, form):
         form.instance.employee = self.request.user
+        form.instance.date = date(self.kwargs['y'], self.kwargs['m'], self.kwargs['d']) # noqa ignore
         return super().form_valid(form)
 
 

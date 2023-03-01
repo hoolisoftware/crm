@@ -43,6 +43,7 @@
                             className: duty.paid ? 'bg-success' : 'bg-primary',
                             id: duty.id
                         }}))
+                        console.log(data)
                     })
                 loadedDutyDates.push(date)
             }
@@ -70,6 +71,7 @@
                     text: '<',
                     click: () => {
                         calendar.prev()
+                        fetchDuty(calendar.currentData.currentDate.getFullYear(), calendar.currentData.currentDate.getMonth()+1)
                     }
                 },
                 todayButton: {

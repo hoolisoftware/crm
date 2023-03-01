@@ -30,8 +30,7 @@
                 <div class="card">
                     <div class="card-body">
                         <p class="card-title-desc">Отмечаясь на данной странице, вы подтверждаете факт отработки смены
-                            {% if view.kwargs.y and view.kwargs.m and view.kwargs.d %}в указанной дате ({{ view.kwargs.y
-                            }}/{{ view.kwargs.m }}/{{ view.kwargs.d }}){% endif %}.</a></p>
+                            {% if view.kwargs.y and view.kwargs.m and view.kwargs.d %}в указанной дате ({{ view.kwargs.y }}/{{ view.kwargs.m }}/{{ view.kwargs.d }}){% endif %}.</a></p>
                         <form method="POST">
                             {% csrf_token %}
                             {% for field in form %}
