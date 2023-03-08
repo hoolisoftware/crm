@@ -8,6 +8,13 @@ from django.urls import reverse_lazy
 User = get_user_model()
 
 
+class Project(models.Model):
+    name = models.CharField('название', max_length=55)
+    description = models.TextField('описание', blank=True, null=True)
+    employees = models.ManyToManyField(to=User, verbose_name='сотрудники', related_name='projects_employee', blank=True) # noqa ignore
+    owner = models.ForeignKey(User, verbose_name='владелец', on_delete=models.CASCADE, related_name='projects_owner') # noqa ignore
+
+
 class Duty(models.Model):
     address = models.CharField('адрес', max_length=255)
     km = models.IntegerField('км за МКАД', default=0)
@@ -20,13 +27,16 @@ class Duty(models.Model):
     end = models.TimeField('конец смены', default=timezone.now)
     days = models.IntegerField('кол-во суток в смене', default=0)
 
-    dinner = models.BooleanField('Текущий обед', default=False)
+    hours_dinner_fluent = models.IntegerField('Текущий обед (ч)', default=2)
+    hours_dinner_late = models.IntegerField('Поздний обед (ч)', default=0)
 
     date = models.DateField('дата смены', default=timezone.now)
     position = models.CharField('должность', max_length=255)
     employee = models.ForeignKey(
         verbose_name='сотрудник', to=User, on_delete=models.CASCADE)
     paid = models.BooleanField('оплачено', default=False)
+
+    project = models.ForeignKey(Project, verbose_name='Проект', on_delete=models.CASCADE, null=True, blank=True) # noqa ignore
 
     @property
     def start_datetime(self):
@@ -45,8 +55,20 @@ class Duty(models.Model):
         return max(self.hours_int - self.hours_duty, 0)
 
     @property
+    def hours_add_sum(self):
+        return self.hours_add + self.hours_dinner_fluent + self.hours_dinner_late + self.hours_insomnia # noqa ignore
+
+    @property
     def hours_int(self):
         return self.hours.seconds//3600
+
+    @property
+    def hours_insomnia(self):
+        return max(12 - self.hours_since_last, 0)
+
+    @property
+    def price_sum(self):
+        return self.hours_duty * self.price + self.hours_add_sum * self.price_add + self.price_km * self.km # noqa ignore
 
     class Meta:
         abstract = True

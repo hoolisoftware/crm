@@ -1,64 +1,10 @@
-{% extends 'origin/base.django-html' %}
-
-{% block title %}
-Календарь сотрудника
-{% endblock %}
-
-{% block content %}
-<div class="main-content">
-    <div class="page-content">
-        <div class="container-fluid">
-            {% for object in object_list %}
-                {{object.date|date:"Y-m-d"}}
-            {% endfor %}
-            <div style="height: 80vh;">
-                <div id='calendar'></div>
-            </div>
-            <br>
-            <br>
-            {% include 'origin/footer.django-html' %}
-        </div>
-    </div>
-</div>
-{% endblock %}
-
-{% block styles %}
-<style>
-    .calendar__add-button
-    {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        font-size: 3em;
-        height: 60px;
-        width: 60px;
-        border-radius: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff !important;
-        margin: 50px 10px;
-        opacity: .9;
-    }
-    .calendar__add-button:hover
-    {
-        opacity: 1;
-    }
-    @media (max-width: 991px)
-    {
-        .calendar__add-button
-        {
-            right: initial;
-            left: 0;
-        }
-    }
-</style>
-{% endblock %}
+{% extends 'crm/duty-calendar.django-html' %}
 
 {% block scripts %}
-<script src="
-    https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js
-    "></script>
+<a  href="{% url 'crm:project-duty-create' %}" class="calendar__add-button bg-success">
+    <i class="fa-solid fa-plus"></i>
+</a>
+{{ block.super }}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         
@@ -139,10 +85,10 @@
                 }
             },
             dateClick: (e) => {
-                location.assign(`/account/duty/create/${e.date.getFullYear()}/${e.date.getMonth()+1}/${e.date.getDate()}/`)
+                location.assign(`/project/duty/create/${e.date.getFullYear()}/${e.date.getMonth()+1}/${e.date.getDate()}/`)
             },
             eventClick: (e) => {
-                location.assign(`/account/duty/${e.event.id}`)
+                location.assign(`/project/duty/${e.event.id}`)
             }
         })
         calendar.render()
@@ -152,4 +98,4 @@
         )
     })
 </script>
-{% endblock scripts %}
+{% endblock %}

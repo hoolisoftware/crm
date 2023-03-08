@@ -4,3 +4,4 @@ from . import models
 
 
 admin.site.register(models.PositionDuty)
+admin.site.register(models.Project)

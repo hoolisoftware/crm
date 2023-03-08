@@ -32,6 +32,9 @@
                         <p class="card-title-desc">Отмечаясь на данной странице, вы подтверждаете факт отработки смены
                             {% if view.kwargs.y and view.kwargs.m and view.kwargs.d %}в указанной дате ({{ view.kwargs.y }}/{{ view.kwargs.m }}/{{ view.kwargs.d }}){% endif %}.</a></p>
                         <form method="POST">
+                            {% for error in form.errors %}
+                                {{ error }}
+                            {% endfor %}
                             {% csrf_token %}
                             {% for field in form %}
                             <div class="mb-3 row">
@@ -39,6 +42,7 @@
                                 <div class="col-md-10">
                                     {{ field }}
                                 </div>
+                                {{ field.error }}
                             </div>
                             {% endfor %}
                             <div class="row">

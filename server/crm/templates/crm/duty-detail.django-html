@@ -18,8 +18,8 @@
                 <div class="card">
                     <div class="card-body">
                         {% for message in messages %}
-                            <div class="alert alert-success">
-                                {{message}}
+                        <div class="alert alert-success">
+                            {{message}}
                             </div>
                         {% endfor %}
                         <div style="overflow-x: auto;">
@@ -29,16 +29,12 @@
                                     <td>{{ object.date }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Начало смены</td>
-                                    <td>{{ object.start }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Конец смены</td>
-                                    <td>{{ object.end }}</td>
-                                </tr>
-                                <tr>
                                     <td>ФИО</td>
                                     <td>{{ object.employee.get_full_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Должность</td>
+                                    <td>{{ object.position }}</td>
                                 </tr>
                                 <tr>
                                     <td>Телефон</td>
@@ -46,11 +42,15 @@
                                 </tr>
                                 <tr>
                                     <td>Адрес</td>
-                                    <td>{{ object.adress }}</td>
+                                    <td>{{ object.address }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Должность</td>
-                                    <td>{{ object.position }}</td>
+                                    <td>Начало смены</td>
+                                    <td>{{ object.start }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Конец смены</td>
+                                    <td>{{ object.end }}</td>
                                 </tr>
                                 <tr>
                                     <td>Цена смены</td>
@@ -66,7 +66,7 @@
                                 </tr>
                                 <tr>
                                     <td>Сумма</td>
-                                    <td>xxx руб.</td>
+                                    <td>{{ object.price_sum }} руб.</td>
                                 </tr>
                             </table>
                         </div>

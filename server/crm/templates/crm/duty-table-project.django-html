@@ -1,0 +1,7 @@
+{% extends 'crm/duty-table.django-html' %}
+
+{% block add_button %}
+    <div class="row">
+        <a class="btn btn-success" href="{% url 'crm:project-duty-create' %}"><i class="fa-solid fa-pen-to-square"></i> &nbsp;Добавить смену</a>
+    </div>
+{% endblock %}

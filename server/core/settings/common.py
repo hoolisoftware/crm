@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mathfilters',
 
     'users',
     'crm',
@@ -88,7 +89,6 @@ USE_TZ = True
 USE_I18N = True
 TIME_ZONE = 'UTC'
 LANGUAGE_CODE = 'ru'
-DATE_INPUT_FORMATS = ('%Y-%m-%d',)
 TIME_INPUT_FORMATS = ('%H:%M',)
 
 STATIC_URL = 'static/'

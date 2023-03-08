@@ -1,5 +1,7 @@
 {% extends 'origin/base.django-html' %}
 
+{% load mathfilters %}
+
 {% block title %}
 Таблица смен
 {% endblock %}
@@ -61,7 +63,7 @@
                                   </colgroup>
                                 <tr>
                                     <th>№</th>
-                                    <th>{{ object.date.editable }}</th>
+                                    <th>Дата</th>
                                     <th>Дата/время начала смены</th>
                                     <th>Дата/время окончания смены</th>
                                     <th>Кол-во суток в смене</th>
@@ -70,8 +72,10 @@
                                     <th>Время начала смены</th>
                                     <th>Время конца смены</th>
                                     <th>Кол-во рабочих часов</th>
+                                    <th>Длительность смены</th>
                                     <th>Часы переработки</th>
                                     <th>Текущий обед</th>
+                                    <th>Поздний обед</th>
                                     <th>Кол-во часов между сменами</th>
                                     <th>Кол-во окр. часов между сменами</th>
                                     <th>Недосып</th>
@@ -88,39 +92,40 @@
                                         <td>{{ object.date|date:'d/m/Y' }}</td>
                                         <td>{{ object.start_datetime }}</td>
                                         <td>{{ object.end_datetime }}</td>
-                                        <td>{{ object.days }}</td>
+                                        <td>{{ object.days }} суток</td>
                                         <td>XXX</td>
                                         <td>{{ object.address }}</td>
                                         <td>{{ object.start }}</td>
                                         <td>{{ object.end }}</td>
-                                        <td>{{ object.hours_int }}</td>
-                                        <td>{{ object.hours_add }}</td>
-                                        <td>{% if object.dinner %}Да{% else %}Нет{% endif %}</td>
-                                        <td>{{ object.hours_since_last }}</td>
-                                        <td>{{ object.hours_since_last|floatformat:0 }}</td>
-                                        <td>XXX</td>
-                                        <td>XXX</td>
-                                        <td>{{ object.km }}</td>
-                                        <td>{{ object.price_km }}</td>
-                                        <td>{{ object.price }}</td>
-                                        <td>{{ object.price_add }}</td>
-                                        <td>XXX</td>
+                                        <td>{{ object.hours_int }} ч</td>
+                                        <td>{{ object.hours_duty }} ч</td>
+                                        <td>{{ object.hours_add }} ч</td>
+                                        <td>{{ object.hours_dinner_fluent }} ч</td>
+                                        <td>{{ object.hours_dinner_late }} ч</td>
+                                        <td>{{ object.hours_since_last }} ч</td>
+                                        <td>{{ object.hours_since_last|floatformat:0 }} ч</td>
+                                        <td>{{ object.hours_insomnia }} ч</td>
+                                        <td>{{ object.hours_add_sum }} ч</td>
+                                        <td>{{ object.km }} руб</td>
+                                        <td>{{ object.price_km }} руб</td>
+                                        <td>{{ object.price }} руб</td>
+                                        <td>{{ object.price_add }} руб</td>
+                                        <td><span class="price-sum-label">{{ object.price_sum|stringformat:".2f" }}</span> руб</td>
                                     </tr>
                                 {% endfor %}
                                 <tr>
-                                    <td colspan="21" style="text-align: end;">Сумма без %</td>
-                                    <td colspan="1">XXX</td>
+                                    <td colspan="22" style="text-align: end;">Сумма без %</td>
+                                    <td colspan="1"><span class="price-sum-total-label"></span> руб</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="21" style="text-align: end;">Сумма с 10% ФК</td>
+                                    <td colspan="22" style="text-align: end;">Сумма с 10% ФК</td>
                                     <td colspan="1">XXX</td>
                                 </tr>
                             </table>
                         </div>
                         <br>
-                        <div class="row">
-                            <a class="btn btn-success" href="{% url 'crm:account-duty-create' %}"><i class="fa-solid fa-pen-to-square"></i> &nbsp;Добавить смену</a>
-                        </div>
+                        {% block add_button %}
+                        {% endblock %}
                     </div>
                 </div>
             </div>
@@ -144,4 +149,13 @@
         background-color: #e2efd9;
     }
 </style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const prices = [...document.querySelectorAll('.price-sum-label')].map(item=>Number(item.innerHTML))
+        document.querySelector('.price-sum-total-label').innerHTML = prices.reduce((accumulator, current)=>accumulator+current) 
+    });
+</script>
 {% endblock %}
